@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int reverse(int x) {
+        string str=to_string(x);
+        string ans="";
+        bool ck=false;
+        if(x<0)
+        {
+            ck=true;
+            bool f=true;
+            for(int i=1;i<str.size();i++)
+            {
+                if(f && str[i]=='0')
+                 continue;
+
+                 f=false;
+                 ans+=str[i];
+
+            }
+            //ans+="-";
+        }
+        else
+        {
+           bool f=true;
+            for(int i=0;i<str.size();i++)
+            {
+                if(f && str[i]=='0')
+                 continue;
+
+                 f=false;
+                 ans+=str[i];
+
+            }
+            //ans+="-";
+        }
+        for(int i=0;i<ans.size()/2;i++)
+        swap(ans[i],ans[ans.size()-i-1]);
+
+        long long v=0;
+        for(auto x: ans){
+        v=( v*10)+(x-'0');
+         if(v>2147483648 || v<(-2147483648)) return 0;
+        }
+        if(ck && v>0) v*=-1;
+        if(v>2147483648 || v<(-2147483648)) return 0;
+        else
+        return v;
+        
+    }
+};
